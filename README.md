@@ -1,3 +1,3 @@
 # Furbo Nanny Report Optimization / Drinking/Eating Report
 
-Interactive prototype. Open `v65/` (latest; older versions kept). Use the left panel to switch Design A (Combined Graph), B (Combined Card), C (Individual Card), Original and the Premium-only insight card.
+Interactive prototype. Open `v72/` (latest; older versions kept). Use the left panel to switch Design A (Combined Graph), B (Combined Card), C (Individual Card), Original and the Premium-only insight card.

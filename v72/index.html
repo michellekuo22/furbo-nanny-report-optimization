@@ -851,7 +851,6 @@ img { display: block; }
 #design-panel .seg button:hover { background: rgba(255,255,255,.5); }
 #design-panel .seg button.on { background: #fff; color: #434343; box-shadow: 0 1px 3px rgba(0,0,0,.18); }
 #design-panel.is-o .prem { display: none; }
-#design-panel .rp-replay { margin-top: 4px; font-size: 12px !important; text-align: center !important; background: transparent !important; box-shadow: inset 0 0 0 1px #D9D5CB; }
 #design-panel .prem { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; padding: 10px 4px 2px 6px; border-top: 1px solid #E8E4DB; }
 #design-panel .prem b { display: block; font-size: 13px; color: #434343; }
 #design-panel .prem small { display: block; font-size: 11px; color: #8a8a8a; }
@@ -2827,7 +2826,6 @@ document.addEventListener('touchmove', function(e) { if (e.touches.length > 1) e
   <div class="sub subB"><div class="seg" role="group" aria-label="Color style"><button data-o="B1" class="on">Multi-colored</button><button data-o="B2">Single color</button></div></div>
   <button data-d="A">Design C<small>Combined Graph</small></button>
   <div class="sub subA"><div class="seg" role="group" aria-label="Color style"><button data-o="A1" class="on">Multi-colored</button><button data-o="A2">Single color</button></div></div>
-  <button id="replay-charts" class="rp-replay">↻ Replay graph animation</button>
   <div class="prem"><div><b>Premium only</b><small>Insight card</small></div><button id="prem-sw" class="sw on" role="switch" aria-checked="true" aria-label="Premium only: insight card"><i></i></button></div>
 </aside>
 <script>
@@ -2841,7 +2839,6 @@ dpPanel.addEventListener('click', e => {
 document.getElementById('design-panel').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.id === 'prem-sw') return setPremium(!RP_PREMIUM);
-  if (b.id === 'replay-charts') { const pg = document.getElementById('page-report'); if (!pg.classList.contains('show')) { document.querySelector('.nav-item[data-tab="report"]').click(); return; } rpPrimeCharts(); return; }
   if (b.dataset.o) setDesign(b.dataset.o[0], b.dataset.o); else if (b.dataset.d === 'B') setDesign('B', RP_OPT); else if (b.dataset.d === 'A') setDesign('A', RP_OPTA); else setDesign(b.dataset.d);
 });
 </script>

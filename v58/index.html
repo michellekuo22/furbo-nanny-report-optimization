@@ -2567,16 +2567,12 @@ function rpDesignO(cfg) {
   let out = '<div><div class="rp-sec">Video Highlights</div><div class="rp-hl-row">' + hl('Looking out window') + hl('Looking out over his shoulder') + '</div></div>';
   ['act', 'bark', 'meow'].forEach(k => {
     const o = RPO[k], c = cfg.find(x => x.key === k);
-    const n = rpDay === '12' ? o.n12 : Math.max(1, Math.round(o.avg * c.n / RP_AVG[k]));
-    const { pct, dir } = rpCmp(n, o.avg);
-    const text = k === 'act' ? 'Archie was active ' + n + ' times today, ' + (rpDay === '12' ? '10%' : pct + '%') + ' ' + (dir === 'below' ? 'below' : 'above') + ' the average.'
-      : 'Archie was ' + (k === 'bark' ? 'barking ' : 'meowing ') + n + ' times today, ' + (dir === 'above' ? 'more' : dir === 'same' ? 'about the usual' : 'less') + (dir === 'same' ? '' : ' than usual') + '.';
-    const tp = rpDay === '12' ? 20 : (pct || 3), down = rpDay === '12' ? false : dir === 'below';
+    const text = c.text, tp = parseInt(c.trend, 10), down = !!c.trendDown;
     const bars = o.bar && (rpDay === '12' ? RPO_BARS : c.bars).map(([mt, h], i) => '<i style="left:' + RP_X[i] + 'px;top:' + mt + 'px;height:' + h + 'px;background:' + o.bar + '"></i>').join('');
     const lets = RP_DAYL.map((l, i) => '<em class="' + (i === 6 ? 'today' : '') + '" style="left:' + RP_X[i] + 'px;top:40px">' + l + '</em>').join('');
     out += '<div><div class="rp-sec">' + o.sec + '</div><div class="rp-card rp-n' + (o.soothe ? ' has-soothe' : '') + '"><div class="rp-n-main"><div class="rp-n-top"><div class="rp-n-head">' + rpIcon(o.icon) + '<p>' + text + '</p></div>' +
       '<div class="rp-ch"><div class="rpO-top"><b style="color:' + o.lc + '">Last 7 days</b><span class="rpO-tr' + (down ? ' down' : '') + '"><img src="' + A + o.ti + '.svg" alt="">' + tp + '% from last week</span></div>' +
-      '<div class="rp-ch-row"><div class="rp-avg2" style="color:' + o.lc + '"><div class="n" style="gap:4px"><b>' + o.avg + '</b><small style="margin-top:8.5px">times</small></div><span>Average</span></div>' +
+      '<div class="rp-ch-row"><div class="rp-avg2" style="color:' + o.lc + '"><div class="n" style="gap:4px"><b>' + RP_AVG[k] + '</b><small style="margin-top:8.5px">times</small></div><span>Average</span></div>' +
       '<div class="rp-bars2" style="height:56px">' + bars + lets + '<img class="avgline" src="' + A + o.line + '.svg" alt="" style="top:13.26px"></div></div></div></div>' +
       (o.soothe ? '<div class="rp-soothe2"><img src="' + A + 'imgGroup4313.svg" alt=""><span>Ease your pets’ nerves with <a href="javascript:void(0)">Calm My Pet</a></span></div>' : '') + '</div></div></div>';
   });
